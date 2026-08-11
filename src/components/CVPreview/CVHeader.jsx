@@ -1,4 +1,3 @@
-// src/components/CVPreview/CVHeader.jsx
 export default function CVHeader({ info }) {
   const { fullName, email, phone, location, linkedin, github } = info;
 

@@ -2,25 +2,18 @@
 import { useState } from "react";
 import PersonalForm from "./components/FormPanel/PersonalForm";
 import CVHeader from "./components/CVPreview/CVHeader";
+import { simpleData } from "./data/simpleData";
 import "./App.css";
 
 function App() {
-  // Define state with empty strings as default values
-  const [personalInfo, setPersonalInfo] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    location: "",
-    linkedin: "",
-    github: "",
-  });
+  const [personalInfo, setPersonalInfo] = useState(simpleData);
 
   // Handle changes for all text inputs in this section
   const handlePersonalChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => ({
       ...prevInfo,
-      [name]: value, // Dynamically updates the matching key in state
+      [name]: value, 
     }));
   };
 

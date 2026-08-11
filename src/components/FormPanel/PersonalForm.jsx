@@ -1,4 +1,3 @@
-// src/components/FormPanel/PersonalForm.jsx
 export default function PersonalForm({ personalInfo, onChange }) {
   return (
     <section className="form-section">
@@ -10,7 +9,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="fullName"
           name="fullName"
-          placeholder="John Doe"
+          placeholder="Abebe Kebede"
           value={personalInfo.fullName}
           onChange={onChange}
         />
@@ -22,7 +21,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="email"
           id="email"
           name="email"
-          placeholder="johndoe@example.com"
+          placeholder="abebekebede@gmeil.com"
           value={personalInfo.email}
           onChange={onChange}
         />
@@ -34,7 +33,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="tel"
           id="phone"
           name="phone"
-          placeholder="(123) 456-7890"
+          placeholder="(+251) 912345678"
           value={personalInfo.phone}
           onChange={onChange}
         />
@@ -58,7 +57,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="linkedin"
           name="linkedin"
-          placeholder="linkedin.com/in/username"
+          placeholder="linkedin.com/in/abebekebede"
           value={personalInfo.linkedin}
           onChange={onChange}
         />
@@ -70,7 +69,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="github"
           name="github"
-          placeholder="github.com/username"
+          placeholder="github.com/abebekebede"
           value={personalInfo.github}
           onChange={onChange}
         />
