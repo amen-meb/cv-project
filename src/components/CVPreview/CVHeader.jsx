@@ -1,3 +1,11 @@
+import { 
+  FaEnvelope, 
+  FaPhone, 
+  FaMapMarkerAlt, 
+  FaLinkedin, 
+  FaGithub 
+} from "react-icons/fa";
+
 export default function CVHeader({ info }) {
   const { fullName, email, phone, location, linkedin, github } = info;
 
@@ -6,20 +14,20 @@ export default function CVHeader({ info }) {
       {fullName && <h1 className="cv-name">{fullName}</h1>}
       
       <div className="cv-contact-info">
-        {email && <span>{email}</span>}
-        {phone && <span>{phone}</span>}
-        {location && <span>{location}</span>}
+        {email && (<span><FaEnvelope className="cv-icon" /> {email}</span>)}
+        {phone && <span><FaPhone className="cv-icon" />{phone}</span>}
+        {location && <span><FaMapMarkerAlt className="cv-icon" />{location}</span>}
       </div>
 
       <div className="cv-social-info">
         {linkedin && (
           <span>
-            <strong>LinkedIn:</strong> {linkedin}
+            <FaLinkedin className="cv-icon" /> {linkedin}
           </span>
         )}
         {github && (
           <span>
-            <strong>GitHub:</strong> {github}
+            <FaGithub className="cv-icon" /> {github}
           </span>
         )}
       </div>

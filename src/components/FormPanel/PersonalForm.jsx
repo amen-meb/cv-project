@@ -1,3 +1,6 @@
+import { simpleData } from "../../data/simpleData";
+
+
 export default function PersonalForm({ personalInfo, onChange }) {
   return (
     <section className="form-section">
@@ -9,7 +12,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="fullName"
           name="fullName"
-          placeholder="Abebe Kebede"
+          placeholder={simpleData.fullName}
           value={personalInfo.fullName}
           onChange={onChange}
         />
@@ -21,7 +24,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="email"
           id="email"
           name="email"
-          placeholder="abebekebede@gmeil.com"
+          placeholder={simpleData.emeil}
           value={personalInfo.email}
           onChange={onChange}
         />
@@ -33,7 +36,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="tel"
           id="phone"
           name="phone"
-          placeholder="(+251) 912345678"
+          placeholder={simpleData.phone}
           value={personalInfo.phone}
           onChange={onChange}
         />
@@ -45,7 +48,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="location"
           name="location"
-          placeholder="City, State"
+          placeholder={simpleData.location}
           value={personalInfo.location}
           onChange={onChange}
         />
@@ -57,7 +60,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="linkedin"
           name="linkedin"
-          placeholder="linkedin.com/in/abebekebede"
+          placeholder={simpleData.linkedin}
           value={personalInfo.linkedin}
           onChange={onChange}
         />
@@ -69,7 +72,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="github"
           name="github"
-          placeholder="github.com/abebekebede"
+          placeholder={simpleData.github}
           value={personalInfo.github}
           onChange={onChange}
         />
