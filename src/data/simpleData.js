@@ -26,5 +26,6 @@ export const simpleData = {
       endDate: "Present", 
       description: "Developed and maintained responsive web applications using React. Collaborated with cross-functional teams to deploy updates and debug client-side interfaces.",
     }
-  ]
+  ],
+  skills: ["React", "JavaScript", "HTML/CSS", "Node.js", "Git"]
     };

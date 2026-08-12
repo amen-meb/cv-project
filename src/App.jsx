@@ -6,12 +6,15 @@ import EducationForm from "./components/FormPanel/EducationForm";
 import CVEducation from "./components/CVPreview/CVEducation";
 import ExperienceForm from "./components/FormPanel/ExperienceForm";
 import CVExperience from "./components/CVPreview/CVExperience";
+import SkillsForm from "./components/FormPanel/SkillsForm";
+import CVSkills from "./components/CVPreview/CVSkills";
 import "./App.css";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(simpleData);
   const [educationList, setEducationList] = useState(simpleData.education);
   const [experienceList, setExperienceList] = useState(simpleData.experience);
+  const [skillsList, setSkillsList] = useState(simpleData.skills);
 
   // Handle changes for all text inputs in this section
   const handlePersonalChange = (e) => {
@@ -64,6 +67,19 @@ function App() {
     setExperienceList((prevList) => prevList.filter((exp) => exp.id !== id));
   };
 
+  //skill handlers
+  const handleAddSkill = (newSkill) => {
+    const trimmed = newSkill.trim();
+    // Prevent adding empty strings or duplicate skills
+    if (trimmed && !skillsList.includes(trimmed)) {
+      setSkillsList((prev) => [...prev, trimmed]);
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove) => {
+    setSkillsList((prev) => prev.filter((skill) => skill !== skillToRemove));
+  };
+
   return (
     <div className="app-container">
       {/* Left Panel: Form */}
@@ -86,6 +102,12 @@ function App() {
           onAdd={handleAddExperience}
           onRemove={handleRemoveExperience}
         />
+
+        <SkillsForm 
+          skillsList={skillsList}
+          onAddSkill={handleAddSkill}
+          onRemoveSkill={handleRemoveSkill}
+        />
       
       </div>
 
@@ -100,6 +122,10 @@ function App() {
 
           {experienceList.length > 0 && (
             <CVExperience experience={experienceList} />
+          )}
+
+          {skillsList.length > 0 && (
+            <CVSkills skills={skillsList} />
           )}
         </div>
       </div>
