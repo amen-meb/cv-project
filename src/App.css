@@ -1,67 +1,67 @@
 /* src/App.css */
-body {
+
+/* Overwrites template limits so the app fills the entire screen */
+#root {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure no default margin or padding on html/body is pushing things */
+html, body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f3f4f6;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Global box-sizing rule */
+* {
+  box-sizing: border-box;
 }
 
 .app-container {
   display: flex;
   height: 100vh;
+  width: 100vw;
 }
 
-/* Left Form Panel */
+/* ... (keep your remaining CSS rules the same below this) */
+
+/* Left Form Panel (Set to 40% width) */
 .form-panel {
   width: 40%;
-  padding: 2rem;
+  padding: 2.5rem;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: #f1f5f9; /* Soft grey background for form panels */
   border-right: 1px solid #e5e7eb;
-}
-
-.form-section h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  color: #1f2937;
-}
-
-.input-group {
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
-.input-group label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #4b5563;
-  margin-bottom: 0.25rem;
-}
-
-.input-group input {
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-/* Right CV Preview Panel */
+/* Right CV Preview Panel (Set to 60% width) */
 .cv-preview-container {
   width: 60%;
-  padding: 2rem;
-  background-color: #374151; /* Dark background to see the white page */
+  padding: 2.5rem;
+  background-color: #374151; /* Dark slate background */
   display: flex;
   justify-content: center;
   overflow-y: auto;
 }
 
+/* Printable CV Sheet Container */
 .cv-document {
   width: 100%;
-  max-width: 800px;
+  max-width: 820px; /* Generous width for the standard A4 print sheet */
   background-color: #ffffff;
-  padding: 2.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  min-height: 297mm; /* Standard ratio approximation */
+  padding: 3.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  min-height: 297mm;
+  height: fit-content;
 }
 
 /* CV Header Specific Styles */
@@ -88,6 +88,226 @@ body {
   margin-bottom: 0.25rem;
 }
 
+
+/* ==========================================================================
+   Personal Details Card UI/UX
+   ========================================================================== */
+
+/* Outer White Card Container */
+.form-section-card {
+  background-color: #ffffff;
+  border-radius: 28px; /* High roundness matching the screenshot */
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(241, 245, 249, 0.8);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-width: 450px; /* Optional constraints to match layout */
+}
+
+/* Section Main Heading */
+.form-section-card h2 {
+  margin: 0 0 2rem 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.02em;
+}
+
+/* Spacing for input rows */
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bold Labels */
+.input-group label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: baseline; /* Keeps "recommended" text aligned with bottom of label */
+}
+
+/* 
+   Inject "recommended" text purely via CSS 
+   Targeting labels by their htmlFor attribute
+*/
+.input-group label[for="email"]::after,
+.input-group label[for="phone"]::after,
+.input-group label[for="location"]::after,
+.input-group label[for="linkedin"]::after,
+.input-group label[for="github"]::after {
+  content: "recommended";
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8; /* Soft blue-gray */
+  margin-left: 0.5rem;
+  text-transform: lowercase;
+}
+
+/* Grey Pill Input Fields */
+.input-group input {
+  padding: 1rem 1.25rem;
+  background-color: #f1f3f5; /* Light gray pill background */
+  border: 1px solid transparent;
+  border-radius: 16px; /* Pill shaped roundness */
+  font-size: 1.05rem;
+  color: #000000;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease;
+}
+
+/* Hover/Focus States */
+.input-group input:focus {
+  background-color: #e9ecef;
+}
+
+/* Soft styling for placeholder text inside grey pills */
+.input-group input::placeholder {
+  color: #495057;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   Education Card - List View & Edit View Layouts
+   ========================================================================== */
+
+/* 1. LIST VIEW STYLES (Photo 2) */
+.education-list-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-rows-container {
+  border-top: 1px solid #f1f5f9;
+}
+
+.edu-list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.edu-list-row:hover {
+  background-color: #f8fafc;
+}
+
+.edu-row-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.edu-row-eye-icon {
+  font-size: 1.1rem;
+  color: #475569;
+}
+
+/* Centered Pill Button */
+.add-pill-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-add-pill {
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  padding: 0.65rem 2rem;
+  border-radius: 24px; /* Highly rounded pill shape */
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease;
+}
+
+.btn-add-pill:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* 2. EDIT VIEW ACTION BUTTONS ROW (Photo 1) */
+.entry-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.btn-action-delete {
+  background: none;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.btn-action-delete:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.right-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-action-cancel {
+  background: none;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-action-cancel:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.btn-action-save {
+  background-color: #1d4ed8; /* Blue accent matching save button */
+  border: none;
+  color: white;
+  padding: 0.65rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-action-save:hover {
+  background-color: #1e40af;
+}
 /* src/App.css */
 
 /* Spacing between sections on the Form Panel */

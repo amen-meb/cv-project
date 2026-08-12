@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useState } from "react";
 import PersonalForm from "./components/FormPanel/PersonalForm";
 import CVHeader from "./components/CVPreview/CVHeader";
@@ -11,31 +12,32 @@ import CVSkills from "./components/CVPreview/CVSkills";
 import "./App.css";
 
 function App() {
-  const [personalInfo, setPersonalInfo] = useState(simpleData);
+  const [personalInfo, setPersonalInfo] = useState(simpleData.personalInfo);
   const [educationList, setEducationList] = useState(simpleData.education);
   const [experienceList, setExperienceList] = useState(simpleData.experience);
   const [skillsList, setSkillsList] = useState(simpleData.skills);
 
-  // Handle changes for all text inputs in this section
+  // 1. Personal Details Change Handler
   const handlePersonalChange = (e) => {
     const { name, value } = e.target;
-    setPersonalInfo((prevInfo) => ({...prevInfo,[name]: value,}));
+    setPersonalInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
+  // 2. Education Handlers
   const handleEducationChange = (id, field, value) => {
     setEducationList((prevList) =>
-      prevList.map((edu) => edu.id === id ? { ...edu, [field]: value } : edu)
+      prevList.map((edu) => (edu.id === id ? { ...edu, [field]: value } : edu))
     );
   };
 
-  const handleAddEducation = () => {
+  const handleAddEducation = (id) => {
     const newEdu = {
-      id: crypto.randomUUID(),
+      id: id || crypto.randomUUID(),
       school: "",
       degree: "",
-      field: "",
       startDate: "",
       endDate: "",
+      field: "",
     };
     setEducationList((prevList) => [...prevList, newEdu]);
   };
@@ -44,7 +46,7 @@ function App() {
     setEducationList((prevList) => prevList.filter((edu) => edu.id !== id));
   };
 
-  //Expriance handlers
+  // 3. Experience Handlers
   const handleExperienceChange = (id, field, value) => {
     setExperienceList((prevList) =>
       prevList.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp))
@@ -67,10 +69,9 @@ function App() {
     setExperienceList((prevList) => prevList.filter((exp) => exp.id !== id));
   };
 
-  //skill handlers
+  // 4. Skills Handlers
   const handleAddSkill = (newSkill) => {
     const trimmed = newSkill.trim();
-    // Prevent adding empty strings or duplicate skills
     if (trimmed && !skillsList.includes(trimmed)) {
       setSkillsList((prev) => [...prev, trimmed]);
     }
@@ -82,21 +83,21 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Left Panel: Form */}
+      {/* Left Panel: Forms */}
       <div className="form-panel">
         <PersonalForm 
           personalInfo={personalInfo} 
           onChange={handlePersonalChange} 
         />
-      
+        
         <EducationForm 
-            educationList={educationList}
-            onChange={handleEducationChange}
-            onAdd={handleAddEducation}
-            onRemove={handleRemoveEducation}
-          />
+          educationList={educationList}
+          onChange={handleEducationChange}
+          onAdd={handleAddEducation}
+          onRemove={handleRemoveEducation}
+        />
 
-          <ExperienceForm 
+        <ExperienceForm 
           experienceList={experienceList}
           onChange={handleExperienceChange}
           onAdd={handleAddExperience}
@@ -108,25 +109,15 @@ function App() {
           onAddSkill={handleAddSkill}
           onRemoveSkill={handleRemoveSkill}
         />
-      
       </div>
 
-      {/* Right Panel: Preview */}
+      {/* Right Panel: Live CV Preview */}
       <div className="cv-preview-container">
         <div className="cv-document">
           <CVHeader info={personalInfo} />
-
-          {educationList.length > 0 && (
-            <CVEducation education={educationList} />
-          )}
-
-          {experienceList.length > 0 && (
-            <CVExperience experience={experienceList} />
-          )}
-
-          {skillsList.length > 0 && (
-            <CVSkills skills={skillsList} />
-          )}
+          {educationList.length > 0 && <CVEducation education={educationList} />}
+          {experienceList.length > 0 && <CVExperience experience={experienceList} />}
+          {skillsList.length > 0 && <CVSkills skills={skillsList} />}
         </div>
       </div>
     </div>
