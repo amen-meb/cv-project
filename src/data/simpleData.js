@@ -1,11 +1,11 @@
 export const simpleData = {
     personalInfo:{
         fullName: "Abebe Kebede",
-        emeil: "abebekebede@gmail.com",
+        email: "abebekebede@gmail.com",
         phone: "+251 912345678",
         location: "Addis Ababa, Ethiopia",
         linkedin: "linkedin.com/in/abebekebede",
-        github:"githun.com/abebekebede"
+        github:"github.com/abebekebede"
     },
     education: [
         {

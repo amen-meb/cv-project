@@ -1,10 +1,9 @@
 import { simpleData } from "../../data/simpleData";
 
-
 export default function PersonalForm({ personalInfo, onChange }) {
   return (
-    <section className="form-section">
-      <h2>Personal Information</h2>
+    <section className="form-section-card">
+      <h2>Personal Details</h2>
       
       <div className="input-group">
         <label htmlFor="fullName">Full Name</label>
@@ -12,7 +11,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="fullName"
           name="fullName"
-          placeholder={personalInfo.fullName}
+          placeholder={simpleData.personalInfo.fullName} 
           value={personalInfo.fullName}
           onChange={onChange}
         />
@@ -24,7 +23,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="email"
           id="email"
           name="email"
-          placeholder={simpleData.emeil}
+          placeholder={simpleData.personalInfo.email} 
           value={personalInfo.email}
           onChange={onChange}
         />
@@ -36,7 +35,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="tel"
           id="phone"
           name="phone"
-          placeholder={simpleData.phone}
+          placeholder={simpleData.personalInfo.phone}
           value={personalInfo.phone}
           onChange={onChange}
         />
@@ -48,7 +47,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="location"
           name="location"
-          placeholder={simpleData.location}
+          placeholder={simpleData.personalInfo.location} 
           value={personalInfo.location}
           onChange={onChange}
         />
@@ -60,7 +59,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="linkedin"
           name="linkedin"
-          placeholder={simpleData.linkedin}
+          placeholder={simpleData.personalInfo.linkedin} 
           value={personalInfo.linkedin}
           onChange={onChange}
         />
@@ -72,7 +71,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="github"
           name="github"
-          placeholder={simpleData.github}
+          placeholder={simpleData.personalInfo.github} 
           value={personalInfo.github}
           onChange={onChange}
         />
