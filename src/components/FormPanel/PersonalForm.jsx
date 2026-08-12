@@ -12,7 +12,7 @@ export default function PersonalForm({ personalInfo, onChange }) {
           type="text"
           id="fullName"
           name="fullName"
-          placeholder={simpleData.fullName}
+          placeholder={personalInfo.fullName}
           value={personalInfo.fullName}
           onChange={onChange}
         />
