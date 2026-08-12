@@ -4,31 +4,30 @@ import CVHeader from "./components/CVPreview/CVHeader";
 import { simpleData } from "./data/simpleData";
 import EducationForm from "./components/FormPanel/EducationForm";
 import CVEducation from "./components/CVPreview/CVEducation";
+import ExperienceForm from "./components/FormPanel/ExperienceForm";
+import CVExperience from "./components/CVPreview/CVExperience";
 import "./App.css";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(simpleData);
   const [educationList, setEducationList] = useState(simpleData.education);
+  const [experienceList, setExperienceList] = useState(simpleData.experience);
 
   // Handle changes for all text inputs in this section
   const handlePersonalChange = (e) => {
     const { name, value } = e.target;
-    setPersonalInfo((prevInfo) => ({
-      ...prevInfo,[name]: value, 
-    }));
+    setPersonalInfo((prevInfo) => ({...prevInfo,[name]: value,}));
   };
 
   const handleEducationChange = (id, field, value) => {
     setEducationList((prevList) =>
-      prevList.map((edu) => 
-        edu.id === id ? { ...edu, [field]: value } : edu
-      )
+      prevList.map((edu) => edu.id === id ? { ...edu, [field]: value } : edu)
     );
   };
 
   const handleAddEducation = () => {
     const newEdu = {
-      id: crypto.randomUUID(), // Generates a unique ID
+      id: crypto.randomUUID(),
       school: "",
       degree: "",
       field: "",
@@ -40,6 +39,29 @@ function App() {
 
   const handleRemoveEducation = (id) => {
     setEducationList((prevList) => prevList.filter((edu) => edu.id !== id));
+  };
+
+  //Expriance handlers
+  const handleExperienceChange = (id, field, value) => {
+    setExperienceList((prevList) =>
+      prevList.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp))
+    );
+  };
+
+  const handleAddExperience = () => {
+    const newExp = {
+      id: crypto.randomUUID(),
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    };
+    setExperienceList((prevList) => [...prevList, newExp]);
+  };
+
+  const handleRemoveExperience = (id) => {
+    setExperienceList((prevList) => prevList.filter((exp) => exp.id !== id));
   };
 
   return (
@@ -57,6 +79,14 @@ function App() {
             onAdd={handleAddEducation}
             onRemove={handleRemoveEducation}
           />
+
+          <ExperienceForm 
+          experienceList={experienceList}
+          onChange={handleExperienceChange}
+          onAdd={handleAddExperience}
+          onRemove={handleRemoveExperience}
+        />
+      
       </div>
 
       {/* Right Panel: Preview */}
@@ -66,6 +96,10 @@ function App() {
 
           {educationList.length > 0 && (
             <CVEducation education={educationList} />
+          )}
+
+          {experienceList.length > 0 && (
+            <CVExperience experience={experienceList} />
           )}
         </div>
       </div>
