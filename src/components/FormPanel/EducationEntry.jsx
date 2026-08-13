@@ -1,4 +1,3 @@
-// src/components/FormPanel/EducationEntry.jsx
 import { FaTrash } from "react-icons/fa";
 
 export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
@@ -12,7 +11,7 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
         <input
           type="text"
           id="school"
-          placeholder="Enter school / university"
+          placeholder="e.g. Addis Ababa University"
           value={edu.school || ""}
           onChange={(e) => onChange(edu.id, "school", e.target.value)}
         />
@@ -24,9 +23,21 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
         <input
           type="text"
           id="degree"
-          placeholder="Enter Degree / Field Of Study"
+          placeholder="e.g. Bachelor of Science"
           value={edu.degree || ""}
           onChange={(e) => onChange(edu.id, "degree", e.target.value)}
+        />
+      </div>
+
+      {/* Field of Study Input */}
+      <div className="input-group">
+        <label htmlFor="field">Field of Study</label>
+        <input
+          type="text"
+          id="field"
+          placeholder="e.g. Computer Science"
+          value={edu.field || ""}
+          onChange={(e) => onChange(edu.id, "field", e.target.value)}
         />
       </div>
 
@@ -37,7 +48,7 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
           <input
             type="text"
             id="startDate"
-            placeholder="Enter Start Date"
+            placeholder="e.g. 2018"
             value={edu.startDate || ""}
             onChange={(e) => onChange(edu.id, "startDate", e.target.value)}
           />
@@ -48,26 +59,13 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
           <input
             type="text"
             id="endDate"
-            placeholder="Enter End Date"
+            placeholder="e.g. 2022"
             value={edu.endDate || ""}
             onChange={(e) => onChange(edu.id, "endDate", e.target.value)}
           />
         </div>
       </div>
 
-      {/* Location Input (Optional) */}
-      <div className="input-group">
-        <label htmlFor="location">
-          Location <span className="label-helper">optional</span>
-        </label>
-        <input
-          type="text"
-          id="location"
-          placeholder="Enter Location"
-          value={edu.location || ""}
-          onChange={(e) => onChange(edu.id, "location", e.target.value)}
-        />
-      </div>
 
       {/* Actions Row: Delete (Left) | Cancel & Save (Right) */}
       <div className="entry-actions-row">
@@ -76,7 +74,7 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
           className="btn-action-delete"
           onClick={() => {
             onRemove(edu.id);
-            onClose(); // Returns to list view
+            onClose(); 
           }}
         >
           <FaTrash /> Delete

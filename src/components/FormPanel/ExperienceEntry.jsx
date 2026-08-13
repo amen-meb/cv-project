@@ -1,6 +1,11 @@
+// src/components/FormPanel/ExperienceEntry.jsx
 import { simpleData } from "../../data/simpleData";
+import { FaTrash } from "react-icons/fa";
 
-export default function ExperienceEntry({ exp, onChange, onRemove }) {
+// FIXED: Added onClose to the destructuring parameter list
+export default function ExperienceEntry({ exp, onChange, onRemove, onClose }) {
+  if (!exp) return null;
+
   const placeholderExp = simpleData.experience[0] || {
     company: "Company Name",
     role: "Job Title",
@@ -8,65 +13,94 @@ export default function ExperienceEntry({ exp, onChange, onRemove }) {
   };
 
   return (
-    <div className="experience-entry-container">
+    <div className="experience-editing-container">
       <div className="input-group">
-        <label>Company</label>
+        <label htmlFor="company">Work Experience</label>
         <input
           type="text"
+          id="company"
           placeholder={`e.g. ${placeholderExp.company}`}
-          value={exp.company}
+          value={exp.company || ""}
           onChange={(e) => onChange(exp.id, "company", e.target.value)}
         />
       </div>
 
       <div className="input-group">
-        <label>Role</label>
+        <label htmlFor="role">Role</label>
         <input
           type="text"
+          id="role"
           placeholder={`e.g. ${placeholderExp.role}`}
-          value={exp.role}
+          value={exp.role || ""}
           onChange={(e) => onChange(exp.id, "role", e.target.value)}
         />
       </div>
 
       <div className="date-group">
         <div className="input-group">
-          <label>Start Date</label>
+          <label htmlFor="startDate">Start Date</label>
           <input
             type="month"
-            value={exp.startDate}
+            id="startDate"
+            placeholder="e.g. 06-2018"
+            value={exp.startDate || ""}
             onChange={(e) => onChange(exp.id, "startDate", e.target.value)}
           />
         </div>
 
         <div className="input-group">
-          <label>End Date</label>
+          <label htmlFor="endDate">End Date</label>
           <input
             type="month"
-            value={exp.endDate}
+            id="endDate"
+            placeholder="e.g. 06-2023"
+            value={exp.endDate || ""}
             onChange={(e) => onChange(exp.id, "endDate", e.target.value)}
           />
         </div>
       </div>
 
       <div className="input-group">
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
           rows="4"
           placeholder={placeholderExp.description}
-          value={exp.description}
+          id="description"
+          value={exp.description || ""}
           onChange={(e) => onChange(exp.id, "description", e.target.value)}
         />
       </div>
 
-      <button 
-        type="button" 
-        className="btn-delete" 
-        onClick={() => onRemove(exp.id)}
-      >
-        Remove Experience
-      </button>
-      <hr className="entry-divider" />
+      {/* FIXED: Removed premature closing div tag so buttons render inside the action container */}
+      <div className="entry-actions-row">
+        <button 
+          type="button" 
+          className="btn-action-delete" // FIXED: Re-aligned with global App.css style
+          onClick={() => {
+            onRemove(exp.id);
+            onClose(); // Safely calls onClose now
+          }}
+        >
+          <FaTrash /> Delete
+        </button>
+        
+        <div className="right-actions">
+          <button 
+            type="button" 
+            className="btn-action-cancel"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <button 
+            type="button" 
+            className="btn-action-save"
+            onClick={onClose}
+          >
+            Save
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

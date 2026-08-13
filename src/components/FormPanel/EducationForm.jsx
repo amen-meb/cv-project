@@ -1,13 +1,12 @@
-// src/components/FormPanel/EducationForm.jsx
 import { useState } from "react";
 import { FaGraduationCap, FaChevronDown, FaRegEye } from "react-icons/fa";
 import EducationEntry from "./EducationEntry";
 
 export default function EducationForm({ educationList, onChange, onAdd, onRemove }) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [editingId, setEditingId] = useState(null); // Tracks which entry is being edited
+  const [editingId, setEditingId] = useState(null); 
 
-  // Pre-generates the unique ID so we can immediately open it in Edit View
+  // Handler for adding a new education entry
   const handleAddClick = () => {
     const newId = crypto.randomUUID();
     onAdd(newId);
@@ -22,7 +21,6 @@ export default function EducationForm({ educationList, onChange, onAdd, onRemove
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="header-title-group">
-          <FaGraduationCap className="section-icon" />
           <h2>Education</h2>
         </div>
         <FaChevronDown className={`chevron-icon ${isExpanded ? "rotated" : ""}`} />
@@ -31,7 +29,7 @@ export default function EducationForm({ educationList, onChange, onAdd, onRemove
       {isExpanded && (
         <div className="section-card-content">
           {editingId ? (
-            /* 1. EDIT VIEW (renders when editingId is active) */
+            /* EDIT VIEW */
             <EducationEntry
               edu={educationList.find((edu) => edu.id === editingId)}
               onChange={onChange}
@@ -39,7 +37,7 @@ export default function EducationForm({ educationList, onChange, onAdd, onRemove
               onClose={() => setEditingId(null)}
             />
           ) : (
-            /* 2. LIST VIEW (default view showing school list) */
+            /* LIST VIEW */
             <div className="education-list-view">
               <div className="edu-rows-container">
                 {educationList.map((edu) => (
