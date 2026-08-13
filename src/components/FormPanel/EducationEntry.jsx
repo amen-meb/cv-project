@@ -46,9 +46,8 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
         <div className="input-group">
           <label htmlFor="startDate">Start Date</label>
           <input
-            type="text"
+            type="month"
             id="startDate"
-            placeholder="e.g. 2018"
             value={edu.startDate || ""}
             onChange={(e) => onChange(edu.id, "startDate", e.target.value)}
           />
@@ -57,9 +56,8 @@ export default function EducationEntry({ edu, onChange, onRemove, onClose }) {
         <div className="input-group">
           <label htmlFor="endDate">End Date</label>
           <input
-            type="text"
+            type="month"
             id="endDate"
-            placeholder="e.g. 2022"
             value={edu.endDate || ""}
             onChange={(e) => onChange(edu.id, "endDate", e.target.value)}
           />

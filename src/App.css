@@ -17,6 +17,39 @@ body {
   background-color: #f3f4f6;
 }
 
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.header-btn {
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.header-btn-secondary {
+  border: 1px solid #cbd5e1;
+  background: transparent;
+  color: #0f172a;
+}
+
+.header-btn-primary {
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.header-btn:hover {
+  filter: brightness(0.98);
+}
+
 #root {
   width: 100vw !important;
   height: 100vh !important;
@@ -52,6 +85,10 @@ body {
   display: flex;
   justify-content: center;
   overflow-y: auto;
+}
+
+.cv-preview-container.preview-mode {
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -607,4 +644,144 @@ textarea:focus {
 textarea::placeholder {
   color: #94a3b8 !important;
   opacity: 0.9;
+}
+
+.cv-print-body {
+  margin: 0;
+  background: white;
+  font-family: Arial, sans-serif;
+  color: #111827;
+}
+
+.cv-print-body .cv-document {
+  width: 100%;
+  max-width: 100%;
+  min-height: auto;
+  background: white;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-print-body .cv-header {
+  text-align: center;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 1rem;
+}
+
+.cv-print-body .cv-name {
+  margin: 0 0 0.5rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.cv-print-body .cv-contact-info,
+.cv-print-body .cv-social-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.cv-print-body .cv-section {
+  margin-top: 1.5rem;
+}
+
+.cv-print-body .cv-section-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.cv-print-body .cv-section-divider {
+  border-bottom: 2px solid #111827;
+  margin-bottom: 0.75rem;
+}
+
+.cv-print-body .cv-entry {
+  margin-bottom: 1rem;
+}
+
+.cv-print-body .cv-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cv-print-body .cv-institution {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.cv-print-body .cv-subtitle {
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+.cv-print-body .cv-entry-dates {
+  font-size: 0.9rem;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.cv-print-body .cv-entry-description {
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.cv-print-body .cv-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+@media print {
+  html, body {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    background: white;
+  }
+
+  body {
+    margin: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .form-panel,
+  .app-header,
+  .cv-preview-container:not(.cv-document) {
+    display: none !important;
+  }
+
+  .app-container {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .cv-preview-container {
+    width: 100% !important;
+    padding: 0 !important;
+    background: white !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .cv-document {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: #111827 !important;
+  }
 }

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import PersonalForm from "./components/FormPanel/PersonalForm";
 import CVHeader from "./components/CVPreview/CVHeader";
+import Header from "./components/header";
 import { simpleData } from "./data/simpleData";
 import EducationForm from "./components/FormPanel/EducationForm";
 import CVEducation from "./components/CVPreview/CVEducation";
@@ -16,6 +17,60 @@ function App() {
   const [educationList, setEducationList] = useState(simpleData.education);
   const [experienceList, setExperienceList] = useState(simpleData.experience);
   const [skillsList, setSkillsList] = useState(simpleData.skills);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
+
+  const handleClearAll = () => {
+    setPersonalInfo({
+      fullName: "",
+      email: "",
+      phone: "",
+      location: "",
+      linkedin: "",
+      github: "",
+    });
+    setEducationList([]);
+    setExperienceList([]);
+    setSkillsList([]);
+  };
+
+  const handleLoadExample = () => {
+    setPersonalInfo(simpleData.personalInfo);
+    setEducationList(simpleData.education);
+    setExperienceList(simpleData.experience);
+    setSkillsList(simpleData.skills);
+  };
+
+  const handleDownloadCV = () => {
+    const cvDocument = document.querySelector(".cv-document");
+
+    if (!cvDocument) {
+      window.print();
+      return;
+    }
+
+    const printWindow = window.open("", "_blank", "width=900,height=1200");
+    const printContent = cvDocument.cloneNode(true);
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>CV Download</title>
+          <link rel="stylesheet" href="${window.location.origin}/src/App.css" />
+        </head>
+        <body class="cv-print-body">
+          ${printContent.outerHTML}
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => printWindow.print(), 250);
+  };
+
+  const handleToggleMode = () => {
+    setIsPreviewMode((prev) => !prev);
+  };
 
   // 1. Personal Details Change Handler
   const handlePersonalChange = (e) => {
@@ -53,9 +108,9 @@ function App() {
     );
   };
 
-  const handleAddExperience = () => {
+  const handleAddExperience = (id) => {
     const newExp = {
-      id: crypto.randomUUID(),
+      id: id || crypto.randomUUID(),
       company: "",
       role: "",
       startDate: "",
@@ -82,45 +137,55 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      {/* Left Panel: Forms */}
-      <div className="form-panel">
-        <PersonalForm 
-          personalInfo={personalInfo} 
-          onChange={handlePersonalChange} 
-        />
-        
-        <EducationForm 
-          educationList={educationList}
-          onChange={handleEducationChange}
-          onAdd={handleAddEducation}
-          onRemove={handleRemoveEducation}
-        />
+    <>
+      <Header
+        onClearAll={handleClearAll}
+        onLoadExample={handleLoadExample}
+        onDownloadCV={handleDownloadCV}
+        onToggleMode={handleToggleMode}
+        isPreviewMode={isPreviewMode}
+      />
 
-        <ExperienceForm 
-          experienceList={experienceList}
-          onChange={handleExperienceChange}
-          onAdd={handleAddExperience}
-          onRemove={handleRemoveExperience}
-        />
+      <div className="app-container">
+        {!isPreviewMode && (
+          <div className="form-panel">
+            <PersonalForm 
+              personalInfo={personalInfo} 
+              onChange={handlePersonalChange} 
+            />
+            
+            <EducationForm 
+              educationList={educationList}
+              onChange={handleEducationChange}
+              onAdd={handleAddEducation}
+              onRemove={handleRemoveEducation}
+            />
 
-        <SkillsForm 
-          skillsList={skillsList}
-          onAddSkill={handleAddSkill}
-          onRemoveSkill={handleRemoveSkill}
-        />
-      </div>
+            <ExperienceForm 
+              experienceList={experienceList}
+              onChange={handleExperienceChange}
+              onAdd={handleAddExperience}
+              onRemove={handleRemoveExperience}
+            />
 
-      {/* Right Panel: Live CV Preview */}
-      <div className="cv-preview-container">
-        <div className="cv-document">
-          <CVHeader info={personalInfo} />
-          {educationList.length > 0 && <CVEducation education={educationList} />}
-          {experienceList.length > 0 && <CVExperience experience={experienceList} />}
-          {skillsList.length > 0 && <CVSkills skills={skillsList} />}
+            <SkillsForm 
+              skillsList={skillsList}
+              onAddSkill={handleAddSkill}
+              onRemoveSkill={handleRemoveSkill}
+            />
+          </div>
+        )}
+
+        <div className={`cv-preview-container ${isPreviewMode ? "preview-mode" : ""}`}>
+          <div className="cv-document">
+            <CVHeader info={personalInfo} />
+            {educationList.length > 0 && <CVEducation education={educationList} />}
+            {experienceList.length > 0 && <CVExperience experience={experienceList} />}
+            {skillsList.length > 0 && <CVSkills skills={skillsList} />}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
