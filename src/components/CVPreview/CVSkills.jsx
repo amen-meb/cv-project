@@ -4,14 +4,14 @@ export default function CVSkills({ skills }) {
     <div className="cv-section">
       <h3 className="cv-section-title">Skills</h3>
       <div className="cv-section-divider"></div>
-      
-      <div className="cv-skills-list">
+
+      <ul className="cv-skills-list">
         {skills.map((skill, index) => (
-          <span key={index} className="cv-skill-item">
-            {skill}{index < skills.length - 1 ? " • " : ""}
-          </span>
+          <li key={index} className="cv-skill-item">
+            {skill}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

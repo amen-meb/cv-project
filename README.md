@@ -1,16 +1,64 @@
-# React + Vite
+# CV Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A dynamic resume builder built with React and Vite. This application allows users to enter their personal information, education, work experience, and skills, and instantly preview the changes in a professional CV layout.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Two-panel layout with form inputs on the left and live CV preview on the right
+- Personal information section for name, email, phone, location, LinkedIn, and GitHub
+- Education entries with add/remove functionality
+- Work experience entries with add/remove functionality
+- Skill tag management with add/remove actions
+- Real-time CV preview as users type
+- Edit/Preview mode toggle
+- Clear All option to reset the form
+- Load Example option to fill sample data
+- Download CV/print support for exporting the resume
+- Responsive and professional visual styling
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+- React
+- Vite
+- JavaScript
+- CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Project Structure
+
+- `src/App.jsx` — main app state and form logic
+- `src/components/FormPanel` — form inputs and entry management
+- `src/components/CVPreview` — CV preview components
+- `src/data/simpleData.js` — sample CV data
+- `src/App.css` — styling for the app and CV layout
+
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+1. Clone the repository
+2. Navigate to the project folder
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+5. Open the local URL provided by Vite in the browser.
+
+## Deployment
+
+This project is deployed on Vercel:
+
+- https://cv-project-murex.vercel.app/
+

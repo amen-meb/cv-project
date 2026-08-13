@@ -9,13 +9,12 @@ import {
 import { simpleData } from "../../data/simpleData";
 
 export default function CVHeader({ info }) {
-  // Use state values if they exist, otherwise fall back to simpleData defaults
-  const fullName = info.fullName || simpleData.personalInfo.fullName;
-  const email = info.email || simpleData.personalInfo.email;
-  const phone = info.phone || simpleData.personalInfo.phone;
-  const location = info.location || simpleData.personalInfo.location;
-  const linkedin = info.linkedin || simpleData.personalInfo.linkedin;
-  const github = info.github || simpleData.personalInfo.github;
+  const fullName = info.fullName ?? simpleData.personalInfo.fullName;
+  const email = info.email ?? simpleData.personalInfo.email;
+  const phone = info.phone ?? simpleData.personalInfo.phone;
+  const location = info.location ?? simpleData.personalInfo.location;
+  const linkedin = info.linkedin ?? simpleData.personalInfo.linkedin;
+  const github = info.github ?? simpleData.personalInfo.github;
 
   return (
     <header className="cv-header">

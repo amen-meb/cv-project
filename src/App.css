@@ -13,7 +13,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f3f4f6;
 }
 
@@ -30,6 +30,7 @@ body {
   padding: 0.65rem 1rem;
   font-weight: 600;
   cursor: pointer;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: all 0.15s ease;
 }
 
@@ -107,6 +108,7 @@ body {
   margin-bottom: 0.6rem;
   display: flex;
   align-items: baseline; /* Keeps "recommended" text aligned with bottom of label */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Grey Pill Input Fields */
@@ -176,7 +178,7 @@ textarea {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
               0 8px 10px -6px rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(241, 245, 249, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   max-width: 450px; /* Optional constraints to match layout */
 }
 
@@ -509,6 +511,7 @@ textarea {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
   min-height: 297mm;
   height: fit-content;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cv-header {
@@ -544,6 +547,7 @@ textarea {
   text-transform: uppercase;
   color: #111827;
   letter-spacing: 0.05em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cv-section-divider {
@@ -589,16 +593,20 @@ textarea {
 
 /* Skills list render */
 .cv-skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-  color: #374151;
-  line-height: 1.4;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 0.2rem 0.5rem;
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: #111827;
+  line-height: 1.6;
+  list-style: disc;
 }
 
 .cv-skill-item {
-  display: inline-block;
+  display: list-item;
+  list-style-type: disc;
+  margin-left: 0.2rem;
 }
 
 /* ==========================================================================
@@ -649,7 +657,7 @@ textarea::placeholder {
 .cv-print-body {
   margin: 0;
   background: white;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #111827;
 }
 
