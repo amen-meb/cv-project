@@ -7,8 +7,9 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -53,7 +54,7 @@ body {
 
 #root {
   width: 100vw !important;
-  height: 100vh !important;
+  min-height: 100vh !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -62,7 +63,7 @@ body {
 /*    2. APPLICATION COLUMN PANELS */
 .app-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -814,5 +815,79 @@ textarea::placeholder {
     box-shadow: none !important;
     background: white !important;
     color: #111827 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .form-panel,
+  .cv-preview-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-panel {
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .cv-preview-container {
+    padding: 1.25rem;
+  }
+
+  .cv-document {
+    padding: 1.25rem 1rem 0.75rem;
+  }
+
+  .cv-entry-header {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cv-entry-dates {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 540px) {
+  .app-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12px 10px;
+  }
+
+  .header-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cv-name {
+    font-size: 1.8rem;
+  }
+
+  .cv-contact-info,
+  .cv-social-info {
+    gap: 0.45rem;
+    font-size: 0.75rem;
+  }
+
+  .cv-section-title {
+    font-size: 0.95rem;
+  }
+
+  .cv-institution,
+  .cv-subtitle,
+  .cv-entry-dates,
+  .cv-entry-description {
+    font-size: 0.82rem;
+  }
+
+  .cv-skills-list {
+    grid-template-columns: 1fr;
+    gap: 0.1rem 0.4rem;
   }
 }
