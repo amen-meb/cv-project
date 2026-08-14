@@ -87,7 +87,7 @@ body {
   padding: 2.5rem;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #f1f5f9; /* Soft grey background for form panels */
+  background-color: #f1f5f9; 
   border-right: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@ body {
 .cv-preview-container {
   width: 60%;
   padding: 2.5rem;
-  background-color: #374151; /* Dark slate background */
+  background-color: #374151; 
   display: flex;
   justify-content: center;
   overflow-y: auto;
@@ -124,7 +124,7 @@ body {
   color: #000000;
   margin-bottom: 0.6rem;
   display: flex;
-  align-items: baseline; /* Keeps "recommended" text aligned with bottom of label */
+  align-items: baseline; 
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -180,23 +180,21 @@ textarea {
   content: "recommended";
   font-size: 0.8rem;
   font-weight: 500;
-  color: #94a3b8; /* Soft blue-gray */
+  color: #94a3b8; 
   margin-left: 0.5rem;
   text-transform: lowercase;
 }
 
-/* ==========================================================================
-   4. WHITE SECTION CARDS
-   ========================================================================== */
+/*    4. WHITE SECTION CARDS */
 .form-section-card {
   background-color: #ffffff;
-  border-radius: 28px; /* High roundness matching the screenshot */
+  border-radius: 28px; 
   padding: 3rem 2.5rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
               0 8px 10px -6px rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(241, 245, 249, 0.8);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 450px; /* Optional constraints to match layout */
+  max-width: 450px; 
 }
 
 .form-section-card h2 {
@@ -216,11 +214,8 @@ textarea {
   padding-top: 2rem;
 }
 
-/* ==========================================================================
-   5. DUAL-STATE INTERACTIVE LIST ROWS
-   ========================================================================== */
+/*    5. DUAL-STATE INTERACTIVE LIST ROWS */
 
-/* A. EDUCATION ROWS */
 .education-list-view {
   display: flex;
   flex-direction: column;
@@ -296,9 +291,7 @@ textarea {
   flex-direction: column;
 }
 
-/* ==========================================================================
-   6. SKILLS FORM INPUT & PILLS
-   ========================================================================== */
+/*    6. SKILLS FORM INPUT & PILLS */
 .skill-input-row {
   display: flex;
   gap: 0.5rem;
@@ -344,11 +337,8 @@ textarea {
   color: #374151;
 }
 
-/* ==========================================================================
-   7. BUTTONS & DIVIDERS (FORMS)
-   ========================================================================== */
+/*    7. BUTTONS & DIVIDERS (FORMS) */
 
-/* Add Pill Button (+ Education / + Experience) */
 .add-pill-container {
   display: flex;
   justify-content: center;
@@ -359,7 +349,7 @@ textarea {
   background-color: #ffffff;
   border: 2px solid #e2e8f0;
   padding: 0.65rem 2rem;
-  border-radius: 24px; /* Highly rounded pill shape */
+  border-radius: 24px; 
   font-size: 1rem;
   font-weight: 700;
   color: #000000;
@@ -393,7 +383,7 @@ textarea {
 
 /* Action: Save */
 .btn-action-save {
-  background-color: #1d4ed8; /* Blue accent matching save button */
+  background-color: #1d4ed8; 
   border: none;
   color: white;
   padding: 0.65rem 1.75rem;
@@ -466,7 +456,7 @@ textarea {
 }
 
 .btn-add-skill {
-  background-color: #10b981; /* Green button for addition */
+  background-color: #10b981; 
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -517,12 +507,10 @@ textarea {
   margin: 1.5rem 0;
 }
 
-/* ==========================================================================
-   8. PRINTABLE CV CANVAS PREVIEW
-   ========================================================================== */
+/* 8. PRINTABLE CV CANVAS PREVIEW */
 .cv-document {
   width: 100%;
-  max-width: 820px; /* Generous width for the standard A4 print sheet */
+  max-width: 820px; 
   background-color: #ffffff;
   padding: 3.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -649,9 +637,7 @@ textarea {
   padding-left: 0.15rem;
 }
 
-/* ==========================================================================
-   Fix for Date Input Overflow
-   ========================================================================== */
+/*    Fix for Date Input Overflow */
 .date-group {
   display: flex;
   gap: 1rem;
@@ -667,16 +653,14 @@ textarea {
   min-width: 0; 
 }
 
-/* ==========================================================================
-   Fix for Textarea Description Background and Styles
-   ========================================================================== */
+/*   Fix for Textarea Description Background and Styles */
 textarea {
   padding: 1rem 1.25rem !important;
-  background-color: #f1f3f5 !important; /* Soft light gray background */
+  background-color: #f1f3f5 !important;
   border: 1px solid transparent !important;
-  border-radius: 16px !important; /* Rounded corners matching other inputs */
+  border-radius: 16px !important; 
   font-size: 1.05rem !important;
-  color: #000000 !important; /* Forces text color to be black */
+  color: #000000 !important; 
   outline: none !important;
   font-family: inherit !important;
   resize: vertical !important;
@@ -694,100 +678,33 @@ textarea::placeholder {
   opacity: 0.9;
 }
 
+/* ==========================================================================
+   Print Preview Styling Adjustments
+   ========================================================================== */
+
 .cv-print-body {
   margin: 0;
   background: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #111827;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Force popup canvas to strip background slate wrappers */
+.cv-print-body .cv-preview-container {
+  background: white !important;
+  width: 100% !important;
+  padding: 0 !important;
 }
 
 .cv-print-body .cv-document {
-  width: 100%;
-  max-width: 100%;
-  min-height: auto;
-  background: white;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
-.cv-print-body .cv-header {
-  text-align: center;
-  border-bottom: 2px solid #111827;
-  padding-bottom: 1rem;
-}
-
-.cv-print-body .cv-name {
-  margin: 0 0 0.5rem;
-  font-size: 2.4rem;
-  font-weight: 700;
-}
-
-.cv-print-body .cv-contact-info,
-.cv-print-body .cv-social-info {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-}
-
-.cv-print-body .cv-section {
-  margin-top: 1.5rem;
-}
-
-.cv-print-body .cv-section-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-}
-
-.cv-print-body .cv-section-divider {
-  border-bottom: 2px solid #111827;
-  margin-bottom: 0.75rem;
-}
-
-.cv-print-body .cv-entry {
-  margin-bottom: 1rem;
-}
-
-.cv-print-body .cv-entry-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.cv-print-body .cv-institution {
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.cv-print-body .cv-subtitle {
-  font-size: 0.95rem;
-  margin-top: 0.15rem;
-}
-
-.cv-print-body .cv-entry-dates {
-  font-size: 0.9rem;
-  font-style: italic;
-  white-space: nowrap;
-}
-
-.cv-print-body .cv-entry-description {
-  margin-top: 0.5rem;
-  line-height: 1.4;
-  white-space: pre-wrap;
-}
-
-.cv-print-body .cv-skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
+/* Print Page Rules */
 @media print {
   html, body {
     width: 100%;
@@ -802,6 +719,7 @@ textarea::placeholder {
     print-color-adjust: exact;
   }
 
+  /* Hide UI elements during print */
   .form-panel,
   .app-header,
   .cv-preview-container:not(.cv-document) {
@@ -831,6 +749,15 @@ textarea::placeholder {
     box-shadow: none !important;
     background: white !important;
     color: #111827 !important;
+  }
+}
+
+@media print {
+  .cv-print-body .cv-preview-container,
+  .cv-print-body .cv-document {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 

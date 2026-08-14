@@ -49,13 +49,19 @@ function App() {
     }
 
     const printWindow = window.open("", "_blank", "width=900,height=1200");
+
+    if (!printWindow) {
+      window.alert("Please allow pop-ups to download the CV.");
+      return;
+    }
+
     const printContent = cvDocument.cloneNode(true);
 
     printWindow.document.write(`
       <html>
         <head>
           <title>CV Download</title>
-          <link rel="stylesheet" href="${window.location.origin}/src/App.css" />
+          <meta charset="UTF-8" />
         </head>
         <body class="cv-print-body">
           ${printContent.outerHTML}
@@ -63,22 +69,29 @@ function App() {
       </html>
     `);
 
+    Array.from(document.querySelectorAll("style, link[rel='stylesheet']")).forEach((styleNode) => {
+      printWindow.document.head.appendChild(styleNode.cloneNode(true));
+    });
+
     printWindow.document.close();
     printWindow.focus();
-    setTimeout(() => printWindow.print(), 250);
+
+    setTimeout(() => {
+      printWindow.print();
+    }, 300);
   };
 
   const handleToggleMode = () => {
     setIsPreviewMode((prev) => !prev);
   };
 
-  // 1. Personal Details Change Handler
+  // Personal Details Change Handler
   const handlePersonalChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
-  // 2. Education Handlers
+  // Education Handlers
   const handleEducationChange = (id, field, value) => {
     setEducationList((prevList) =>
       prevList.map((edu) => (edu.id === id ? { ...edu, [field]: value } : edu))
@@ -101,7 +114,7 @@ function App() {
     setEducationList((prevList) => prevList.filter((edu) => edu.id !== id));
   };
 
-  // 3. Experience Handlers
+  // Experience Handlers
   const handleExperienceChange = (id, field, value) => {
     setExperienceList((prevList) =>
       prevList.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp))
@@ -124,7 +137,7 @@ function App() {
     setExperienceList((prevList) => prevList.filter((exp) => exp.id !== id));
   };
 
-  // 4. Skills Handlers
+  // Skills Handlers
   const handleAddSkill = (newSkill) => {
     const trimmed = newSkill.trim();
     if (trimmed && !skillsList.includes(trimmed)) {
