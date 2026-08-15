@@ -177,7 +177,7 @@ textarea {
 .input-group label[for="location"]::after,
 .input-group label[for="linkedin"]::after,
 .input-group label[for="github"]::after {
-  content: "recommended";
+  content: "";
   font-size: 0.8rem;
   font-weight: 500;
   color: #94a3b8; 
